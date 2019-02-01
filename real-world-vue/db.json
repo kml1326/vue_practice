@@ -1,0 +1,46 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "title": "Park CleanUp",
+      "date": "Tues Aug 19, 2018",
+      "time": "6:00",
+      "attendees": [
+        { "id": "1bc123", "name": "Komal Raj" },
+        { "id": "1bc123", "name": "Komal Raj" }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "School CleanUp",
+      "date": "Tues Aug 19, 2018",
+      "time": "6:00",
+      "attendees": [
+        { "id": "a1", "name": "Komal Raj" },
+        { "id": "a2", "name": "John" }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Road CleanUp",
+      "date": "Tues Aug 19, 2018",
+      "time": "6:00",
+      "attendees": [
+        { "id": "a3", "name": "jeri" },
+        { "id": "a4", "name": "Raj Raj" },
+        { "id": "a5", "name": "Raj Raj" },
+        { "id": "a6", "name": "Raj Raj" }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Beach CleanUp",
+      "date": "Tues Aug 19, 2018",
+      "time": "6:00",
+      "attendees": [
+        { "id": "a7", "name": "Komal Raj" },
+        { "id": "a8", "name": "Komal Raj" }
+      ]
+    }
+  ]
+}
