@@ -1,18 +1,27 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <form v-on:submit="addTodo">
+      <input type="text" placeholder="Add todo" @change="handleTodo" />
+      <input type="button" value="Add Todo" class="btn" v-on:click="addTodo" />
+    </form>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-
 export default {
-  name: "home",
-  components: {
-    HelloWorld
+  data() {
+    return {
+      todo: ''
+    }
+  },
+  methods: {
+    addTodo() {
+      
+    },
+    handleTodo(e) {
+      console.log(e.target.value)
+    }
   }
-};
+}
 </script>
+
