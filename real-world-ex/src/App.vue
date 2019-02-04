@@ -4,8 +4,8 @@
       <router-link to="/" class="logo">conduit</router-link>
       <div class="nav-bar">
         <router-link :to="{ name: 'dashboard' }" class="nav-link">Home</router-link> 
-        <router-link :to="{ name: 'dashboard' }" class="nav-sign-in nav-link">Sign in</router-link> 
-        <router-link :to="{ name: 'dashboard' }" class="nav-link">Sign up</router-link> 
+        <router-link :to="{ name: 'sign-in' }" class="nav-sign-in nav-link">Sign in</router-link> 
+        <router-link :to="{ name: 'sign-up' }" class="nav-link">Sign up</router-link> 
       </div>
     </div>
     <router-view />
@@ -18,6 +18,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+}
+.center {
+  text-align: center;
 }
 .container {
   width: 80%;
