@@ -11,9 +11,17 @@ const apiClient = axios.create({
 
 export default {
   getArticles() {
-    return apiClient.get('/articles')
+    return apiClient.get("/articles");
   },
   getPopularTags() {
-    return apiClient.get('/tags')
+    return apiClient.get("/tags");
+  },
+  setUser(user) {
+    const userData = JSON.stringify(user);
+    return apiClient.post("/users", userData);
+  },
+  getUser(user) {
+    const userData = JSON.stringify(user);
+    return apiClient.post("/users/login", userData);
   }
 };

@@ -1,7 +1,7 @@
 <template>
   <div class="tag-container">
     <p>Popular Tags</p>
-    <span v-for="tag in tags" class="tag">{{tag}}</span>
+    <span v-for="(tag, i) in tags" :key="i" class="tag">{{tag}}</span>
   </div>
 </template>
 

@@ -6,7 +6,7 @@
     </header>
     <body class="container feed">
       <div class="article-feed">
-        <ArticleCard v-for="article in articles" :article="article" />
+        <ArticleCard v-for="(article, i) in articles" :key="i" :article="article" />
       </div>
       <div class="tag-feed">
         <PopularTags />

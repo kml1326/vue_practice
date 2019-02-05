@@ -3,31 +3,36 @@
     <p>Sign Up</p>
     <router-link :to="{ name: 'sign-in' }" class="nav-link">Have an account?</router-link>
     <form>
-      <input type="text" placeholder="Username" name="username" v-model="message" value="{message}" v-on:change="handleChange($event)" />
-      <p>{{message}}</p>
-      <input type="text" placeholder="Name" v-model="name" value="name" />
-      <input type="email" placeholder="Email" name="email" v-on:change="handleChange" />
-      <input type="password" placeholder="password" name="password" v-on:change="handleChange" />
-      <input type="button" value="Sign up">
+      <input type="text" placeholder="Username" name="username" ref="username" />
+      <input type="email" placeholder="Email" name="email" ref="email" />
+      <input type="password" placeholder="password" name="password" ref="password" />
+      <input type="button" value="Sign up" v-on:click="handleSubmit">
     </form>
   </div>
 </template>
 
 <script>
+import ArticleService from '../services/ArticleService.js';
+
 export default {
   data() {
     return {
       username: '',
-      name: '',
       email: '',
       password: '',
-      message: ''
     }
   },
   methods: {
-    handleChange: function(e) {
-      console.log(e, e.target.name, e.target.value)
-      
+    handleSubmit: function() {
+      const { username, email, password } = this.$refs;
+      ArticleService.setUser({ user: {
+        username: username.value,
+        email: email.value,
+        password: password.value
+      }})
+      .then(res => {
+        console.log(res.data)
+      }).catch(err => console.log('Error' + err))
     }
   }
 }

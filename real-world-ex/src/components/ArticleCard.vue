@@ -1,13 +1,13 @@
 <template>
   <div class="article-card">
-    <p>{{article.author.username}}</p>
-    <span>{{article.createdAt}}</span>
-    <p>{{article.title}}</p>
-    <p>{{article.description}}</p>
+    <p class="author-name">{{article.author.username}}</p>
+    <span class="created-at">{{article.createdAt}}</span>
+    <p class="title">{{article.title}}</p>
+    <p class="desc">{{article.description}}</p>
     <div>
       <p>Read more...</p>
       <p>
-        <span v-for="tag in article.tagList">{{tag}}</span>
+        <span v-for="(tag, i) in article.tagList" :key="i">{{tag}}</span>
       </p>
     </div>
   </div>
