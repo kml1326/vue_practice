@@ -1,12 +1,12 @@
 <template>
-  <div class="center">
-    <p>Sign Up</p>
-    <router-link :to="{ name: 'sign-in' }" class="nav-link">Have an account?</router-link>
+  <div class="center sign-up-container">
+    <p class="sub-header">Sign Up</p>
+    <router-link :to="{ name: 'sign-in' }" class="link-opt">Have an account?</router-link>
     <form>
-      <input type="text" placeholder="Username" name="username" ref="username" />
-      <input type="email" placeholder="Email" name="email" ref="email" />
-      <input type="password" placeholder="password" name="password" ref="password" />
-      <input type="button" value="Sign up" v-on:click="handleSubmit">
+      <input type="text" placeholder="Username" name="username" ref="username" class="input" />
+      <input type="email" placeholder="Email" name="email" ref="email" class="input" />
+      <input type="password" placeholder="password" name="password" ref="password" class="input" />
+      <input type="button" value="Sign up" v-on:click="handleSubmit" class="btn sign-btn right" />
     </form>
   </div>
 </template>
