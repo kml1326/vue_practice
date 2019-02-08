@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 const apiClient = axios.create({
   baseURL: "https://conduit.productionready.io/api",
@@ -23,5 +23,14 @@ export default {
   getUser(user) {
     const userData = JSON.stringify(user);
     return apiClient.post("/users/login", userData);
+  },
+  getArticleDetails(slug) {
+    return apiClient.get(`/articles/${slug}`);
+  },
+  getUserArticles(username) {
+    return apiClient.get(`/articles/?author=${username}`);
+  },
+  getComments(slug) {
+    return apiClient.get(`/articles/${slug}/comments`);
   }
 };
