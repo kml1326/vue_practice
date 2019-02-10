@@ -43,4 +43,4 @@ export default function getDate(date) {
       break;
   }
   return `${month} ${newDate.getDate()}, ${newDate.getFullYear()}`;
-};
+}

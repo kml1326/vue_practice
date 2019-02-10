@@ -6,7 +6,12 @@
     </header>
     <body class="container feed">
       <div class="article-feed">
-        <ArticleCard v-for="(article, i) in articles" :key="i" :article="article" />
+        <div v-if="tagFeed">
+          <h1>TAG FEED</h1>
+          <ArticleCard v-for="(article, i) in tagFeed" :key="i" :article="article" />
+        </div>
+        global feed
+        <ArticleCard v-for="(article, i) in globalFeed" :key="i" :article="article" />
       </div>
       <div class="tag-feed">
         <PopularTags />
@@ -17,26 +22,27 @@
 
 <script>
 import ArticleService from '../services/ArticleService.js';
+import UserService from '../services/UserService.js';
 import ArticleCard from '../components/ArticleCard';
 import PopularTags from '../components/PopularTags.vue';
+import { mapState } from 'vuex';
 
 export default {
+  computed: {
+    ...mapState(['globalFeed', 'tagFeed', 'user'])
+  },
   components: {
     ArticleCard,
     PopularTags
   },
-  data() {
-    return {
-      articles: []
-    }
-  },
   created() {
     ArticleService.getArticles()
     .then(res => {
-      this.articles = res.data.articles
+      this.$store.commit("GLOBAL_FEED", res.data.articles);
     })
-    .catch(err => console.log('Error' +  err))
+    .catch(err => console.log('Error' +  err));
   }
+   
 }
 </script>
 

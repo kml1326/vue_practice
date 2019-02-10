@@ -17,9 +17,11 @@
       <h1 class="title">{{article.title}}</h1>
       <p class="desc">{{article.description}}</p>
       <span>Read more...</span>
-      <ul class="tag-list">
-        <li v-for="(tag, i) in article.tagList"  :key="i" class="tag"> {{tag}} </li>
-      </ul>
+      <div class="tag-list-container">
+        <ul class="tag-list">
+          <li v-for="(tag, i) in article.tagList"  :key="i" class="tag"> {{tag}} </li>
+        </ul>
+      </div>
     </router-link>
   </div>
 </template>

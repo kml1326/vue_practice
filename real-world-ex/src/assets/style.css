@@ -86,11 +86,11 @@ table {
   color: rgb(168, 165, 165);
   font-size: 14px;
 }
-.nav-sign-in {
-  margin: 0 20px;
-}
 .nav-bar {
   margin-right: 1rem;
+}
+.nav-bar a {
+  margin: 0 10px;
 }
 a {
   color: #5cb85c;
@@ -215,6 +215,11 @@ a {
 .preview-link {
   color: inherit;
 }
+tag-list-container {
+  display: inline-block;
+  max-width: 50%;
+  clear: both;
+}
 .preview-link ul {
   float: right;
   max-width: 50%;
@@ -222,7 +227,6 @@ a {
 }
 ul.tag-list {
   padding-left: 0!important;
-  display: flex;
   list-style: none!important;
 }
 .title {
@@ -273,6 +277,7 @@ ul.tag-list {
   display: inline-block;
   border-radius: 10rem;
   border: .5px solid #c2c3c5;
+  cursor: pointer;
 }
 .tag-pill {
   padding-right: .6em;
@@ -424,4 +429,27 @@ ul.tag-list {
 }
 .comment-footer .date {
   display: inline;
+}
+
+/* =============================================
+  Article Details
+  ============================================== */
+.setting-form {
+  display: inline-block;
+  box-sizing: border-box;
+  margin: 2rem 0;
+}
+.text-area {
+  height: 10rem;
+}
+.logout-btn {
+  background: transparent;
+  color: rgb(184, 34, 34);
+  border: 1px solid rgb(184, 34, 34);
+  font-weight: 800;
+  margin-bottom: 5rem;
+}
+.logout-btn:hover {
+  background: rgb(184, 34, 34);
+  color: rgb(209, 207, 207);
 }

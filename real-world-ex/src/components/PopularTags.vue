@@ -2,7 +2,7 @@
   <div class="tag-container">
     <p>Popular Tags</p>
     <div class="tag-list">
-      <a v-for="(tag, i) in tags" :key="i" href="" class="tag tag-pill">{{tag}}</a>
+      <span v-for="(tag, i) in tags" v-on:click="() => handleTag(tag)" :key="i" class="tag tag-pill">{{tag}}</span>
     </div>
   </div>
 </template>
@@ -14,6 +14,16 @@ import ArticleService from '../services/ArticleService.js';
     data() {
       return {
         tags: []
+      }
+    },
+    methods: {
+      handleTag(tag) {
+        console.log(tag, "clicked tag");
+        ArticleService.articleByTag(tag)
+        .then(res => {
+          console.log(res.data.articles, "by tag");
+          this.$store.commit("TAG_FEED", res.data.articles);
+        })
       }
     },
     created() {

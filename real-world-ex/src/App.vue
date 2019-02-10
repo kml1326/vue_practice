@@ -2,20 +2,33 @@
   <div id="app">
     <div id="nav" class="container">
       <a href="/" class="logo">conduit</a>
-      <div class="nav-bar">
-        <router-link :to="{ name: 'dashboard' }" class="nav-link">Home</router-link> 
-        <router-link :to="{ name: 'sign-in' }" class="nav-sign-in nav-link"><i class="far fa-edit"></i>Sign in</router-link> 
-        <router-link :to="{ name: 'sign-up' }" class="nav-link"><i class="far fa-edit"></i>Sign up</router-link> 
-      </div>
+      <IsSignin v-if="$store.state.user" />
+      <IsSignout v-else />
     </div>
-    <router-view />
+    <router-view/>
   </div>
 </template>
 
 <script>
-import './assets/style.css';
+import "./assets/style.css";
+import UserService from "./services/UserService.js";
+import IsSignin from './components/navBar/IsSignin';
+import IsSignout from './components/navBar/IsSignout';
+
 export default {
-  
-}
+  components: {
+    IsSignin,
+    IsSignout
+  },
+  created() {
+    UserService.current().then(res => {
+      if(parseInt(res.status) === 200 ) {
+        console.log('in created')
+        this.$store.commit("LOGIN", res.data.user);
+      } else console.log('error')
+      
+    });
+  }
+};
 </script>
 

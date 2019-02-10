@@ -2,7 +2,7 @@ import axios from "axios";
 
 const apiClient = axios.create({
   baseURL: "https://conduit.productionready.io/api",
-  withCredentials: false,
+  withCredentials: true,
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json"
@@ -32,5 +32,8 @@ export default {
   },
   getComments(slug) {
     return apiClient.get(`/articles/${slug}/comments`);
+  },
+  articleByTag(tag) {
+    return apiClient.get(`/articles?tag=${tag}`);
   }
 };

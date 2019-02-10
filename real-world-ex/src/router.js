@@ -5,6 +5,8 @@ import SignIn from "./views/SignIn.vue";
 import SignUp from "./views/SignUp.vue";
 import ArticleDetails from "./components/ArticleDetails.vue";
 import Profile from "./components/Profile.vue";
+import NewArticle from "./views/NewArticle.vue";
+import Setting from "./views/Setting.vue";
 
 Vue.use(Router);
 
@@ -36,6 +38,16 @@ export default new Router({
       path: "/:username",
       name: "profile",
       component: Profile
+    },
+    {
+      path: "/editor",
+      name: "new-article",
+      component: NewArticle
+    },
+    {
+      path: "/setting",
+      name: "setting",
+      component: Setting
     }
   ]
 });

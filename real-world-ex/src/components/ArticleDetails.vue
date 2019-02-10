@@ -4,11 +4,11 @@
       <div class="article-container">
         <h2>{{article.title}}</h2>
         <div class="article-meta">
-          <router-link to="">
-            <img :src="article.author.image" alt="">
+          <router-link to>
+            <img :src="article.author.image" alt>
           </router-link>
           <div class="info">
-            <router-link to="" class="author-name">{{article.author.username}}</router-link>
+            <router-link to class="author-name">{{article.author.username}}</router-link>
             <span class="date">{{getDate(article.createdAt)}}</span>
           </div>
           <span>
@@ -34,10 +34,10 @@
         <div class="article-action center">
           <div class="article-meta">
             <router-link to="/">
-              <img :src="article.author.image" alt="">
+              <img :src="article.author.image" alt>
             </router-link>
             <div class="info txt-left">
-              <router-link to="" class="author">{{article.author.username}}</router-link>
+              <router-link to class="author">{{article.author.username}}</router-link>
               <span class="date">{{getDate(article.createdAt)}}</span>
             </div>
             <span>
@@ -59,16 +59,16 @@
             <div class="comment-card">
               <form>
                 <div class="comment-body">
-                  <textarea placeholder="Write a comment..."></textarea>
+                  <textarea placeholder="Write a comment..." v-model="comment"></textarea>
                 </div>
                 <div class="comment-footer txt-right">
-                  <button class="btn btn-sm btn-primary">Post Comment</button>
+                  <button class="btn btn-sm btn-primary" v-on:click="setComment">Post Comment</button>
                 </div>
               </form>
             </div>
-          <div v-if="comments">
-            <CommentCard v-for="comment in comments" :key="comment.id" :comment="comment" />
-          </div>
+            <div v-if="comments">
+              <CommentCard v-for="comment in comments" :key="comment.id" :comment="comment"/>
+            </div>
           </div>
         </div>
       </div>
@@ -77,36 +77,43 @@
 </template>
 
 <script>
-import ArticleService from '../services/ArticleService.js';
-import getDate from '../services/GetDate.js';
-import CommentCard from '../components/CommentCard';
+import ArticleService from "../services/ArticleService.js";
+import getDate from "../services/GetDate.js";
+import CommentCard from "../components/CommentCard";
+import UserService from '../services/UserService.js';
 
-  export default {
-    components: {
-      CommentCard
-    },
-    data() {
-      return {
-        article: null,
-        comments: null
-      }
-    },
-    methods: {
-      getDate: (str) => getDate(str)
-    },
-   created() {
+export default {
+  components: {
+    CommentCard
+  },
+  data() {
+    return {
+      article: null,
+      comments: null,
+      comment: this.$slots.default ? this.$slots.default[0].text : ''
+    };
+  },
+  methods: {
+    getDate: str => getDate(str),
+    setComment(e) {
+      e.preventDefault();
+      console.log(this.comment)
+      ArticleService.setComment(this.$route.params.slug, { comment: this.comment })
+      .then(res => console.log(res.data, 'comment'))
+    }
+  },
+  created() {
     ArticleService.getArticleDetails(this.$route.params.slug)
-     .then(res => {
-       this.article = res.data.article;
-    })
-    .catch(err => console.log(err))
+      .then(res => {
+        this.article = res.data.article;
+      })
+      .catch(err => console.log(err));
 
-    ArticleService.getComments(this.$route.params.slug)
-    .then(res => {
-      this.comments = res.data.comments
-    })
-    .catch(err => console.log(err))
-
-   }
+    UserService.setComments(this.$route.params.slug)
+      .then(res => {
+        this.comments = res.data.comments;
+      })
+      .catch(err => console.log(err));
   }
+};
 </script>
